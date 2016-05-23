@@ -8,6 +8,14 @@ A minimal Zhihu daily app for iOS without any 3rd-party frameworks.
 * Built-in full-featured WebView
 
 ## Screenshots
+#### Splash screen:
+![](https://raw.githubusercontent.com/unixzii/ZhihuDaily-iOS/master/Images/1.png)
+#### Timeline:
+![](https://raw.githubusercontent.com/unixzii/ZhihuDaily-iOS/master/Images/2.png)
+#### Night mode:
+![](https://raw.githubusercontent.com/unixzii/ZhihuDaily-iOS/master/Images/3.png)
+#### Reader:
+![](https://raw.githubusercontent.com/unixzii/ZhihuDaily-iOS/master/Images/4.png)
 
 ## Project Structure
 * Extensions (系统类扩展)
