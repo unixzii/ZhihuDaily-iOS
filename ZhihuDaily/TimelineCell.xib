@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15F24b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TimelineCell">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="90"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2mV-8M-Ppa">
+                    <rect key="frame" x="266" y="8" width="100" height="74"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="2mV-8M-Ppa" secondAttribute="height" multiplier="50:37" id="xLe-0W-aXf"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mCO-Sd-5Nf">
+                    <rect key="frame" x="45" y="14" width="206" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8vf-Gd-g5x">
+                    <rect key="frame" x="25" y="0.0" width="1" height="90"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="YGZ-gc-oES"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="8vf-Gd-g5x" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="Eoj-1K-VeA"/>
+                <constraint firstItem="2mV-8M-Ppa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="G1O-VJ-dtG"/>
+                <constraint firstAttribute="trailing" secondItem="2mV-8M-Ppa" secondAttribute="trailing" constant="8" id="JRI-fi-ngx"/>
+                <constraint firstItem="mCO-Sd-5Nf" firstAttribute="height" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="height" id="KiN-X2-yfY"/>
+                <constraint firstItem="mCO-Sd-5Nf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="S2K-Q6-r5G"/>
+                <constraint firstItem="8vf-Gd-g5x" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Svw-T4-T8i"/>
+                <constraint firstAttribute="bottom" secondItem="2mV-8M-Ppa" secondAttribute="bottom" constant="8" id="YkK-gj-r75"/>
+                <constraint firstItem="mCO-Sd-5Nf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="jYR-Lj-Z0W"/>
+                <constraint firstAttribute="bottom" secondItem="8vf-Gd-g5x" secondAttribute="bottom" id="t4D-eE-5fg"/>
+                <constraint firstItem="2mV-8M-Ppa" firstAttribute="leading" secondItem="mCO-Sd-5Nf" secondAttribute="trailing" constant="15" id="wHE-9h-RDP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="212" y="129"/>
+        </view>
+    </objects>
+</document>
