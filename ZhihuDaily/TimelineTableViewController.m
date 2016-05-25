@@ -95,4 +95,8 @@
     }
 }
 
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNeedsUpdateRefreshStateNotification object:nil];
+}
+
 @end

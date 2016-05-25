@@ -14,7 +14,7 @@
 @interface CacheManager ()
 
 @property (strong, nonatomic) NSLock *cacheLock;
-@property (strong, nonatomic) NSMutableDictionary<NSString *, NSObject*> *memoryCache;
+@property (strong, nonatomic) NSMutableDictionary<NSString *, NSObject *> *memoryCache;
 
 @end
 
@@ -43,8 +43,6 @@
 - (NSString *)filePathForKey:(NSString *)key {
     NSString *basePath = [[[AppDelegate sharedDelegate] applicationCachesDirectory].absoluteString substringFromIndex:5];
     NSString *finalPath = [[basePath stringByAppendingPathComponent:[key stringDigestedViaMD5]] stringByAppendingString:@".bcache"];
-    
-//    NSLog(@"%@", finalPath);
     
     return finalPath;
 }
@@ -86,6 +84,13 @@
     }
     
     return obj;
+}
+
+- (void)clearMemoryCaches {
+    [self.cacheLock withCriticalZone:^id{
+        [self.memoryCache removeAllObjects];
+        return nil;
+    }];
 }
 
 @end

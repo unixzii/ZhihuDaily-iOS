@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
+static NSString * const kNeedsUpdateRefreshStateNotification = @"kNeedsUpdateRefreshStateNotification";
 static NSString * const kTimelineNeedsReserveNotification = @"kTimelineNeedsReserveNotification";
 static NSString * const kStoryShouldShowNotification = @"kStoryShouldShowNotification";
 static NSString * const kStoryUserInfoKey = @"kTopStoryUserInfoKey";

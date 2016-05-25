@@ -30,7 +30,7 @@
     
     self.navigationItem.title = @"知乎日报";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"主页" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showSettingsViewController:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStylePlain target:self action:@selector(showSettingsViewController:)];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -55,6 +55,7 @@
         [self.timelineController reload];
     });
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRefreshState) name:kNeedsUpdateRefreshStateNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self.timelineController selector:@selector(reserve) name:kTimelineNeedsReserveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showReaderViewController:) name:kStoryShouldShowNotification object:nil];
 }
@@ -90,6 +91,12 @@
     readerVC.story = [aNotification.userInfo objectForKey:kStoryUserInfoKey];
     
     [self showViewController:readerVC sender:self];
+}
+
+- (void)updateRefreshState {
+    if (!self.timelineController.busy && self.timelineTableViewController.refreshControl.refreshing) {
+        [self.timelineTableViewController.refreshControl endRefreshing];
+    }
 }
 
 #pragma mark - Timeline Controller Delegate

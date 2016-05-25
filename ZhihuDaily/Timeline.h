@@ -13,7 +13,7 @@
 
 @property (copy, nonatomic) NSDate *date;
 @property (copy, nonatomic) NSString *dateString;
-@property (strong, nonatomic) NSMutableArray<Story *> *stories;
-@property (strong, nonatomic) NSMutableArray<Story *> *topStories;
+@property (copy, nonatomic) NSArray<Story *> *stories;
+@property (copy, nonatomic) NSArray<Story *> *topStories;
 
 @end

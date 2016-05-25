@@ -28,10 +28,6 @@
     return self;
 }
 
-- (void)setTimelines:(NSArray<Timeline *> *)timelines {
-    self->_timelines = timelines;
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (!self.timelines) {
         return 0;

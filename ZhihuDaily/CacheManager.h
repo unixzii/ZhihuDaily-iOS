@@ -17,4 +17,6 @@
 
 - (id)objectForKey:(NSString *)key;
 
+- (void)clearMemoryCaches;
+
 @end

@@ -24,8 +24,10 @@
 
 @interface TimelineController : NSObject
 
-@property (readonly, strong, nonatomic) NSMutableArray<Timeline *> *timelines;
+@property (readonly, copy, nonatomic) NSArray<Timeline *> *timelines;
 @property (weak, nonatomic) id<TimelineControllerDelegate> delegate;
+
+@property (readonly, assign, nonatomic) BOOL busy;
 
 - (void)reload;
 - (void)reserve;

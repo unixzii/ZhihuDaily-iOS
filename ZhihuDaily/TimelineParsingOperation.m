@@ -50,6 +50,8 @@
 }
 
 - (void)inflateStories:(NSArray *)stories forTop:(BOOL)top {
+    NSMutableArray<Story *> *storyModels = [[NSMutableArray alloc] init];
+    
     [stories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         Story *story = [[Story alloc] init];
         story.title = [obj objectForKey:@"title"];
@@ -57,12 +59,18 @@
         
         if (top) {
             story.imageURL = [NSURL URLWithString:[obj objectForKey:@"image"]];
-            [self.timeline.topStories addObject:story];
         } else {
             story.imageURL = [NSURL URLWithString:[[obj objectForKey:@"images"] firstObject]];
-            [self.timeline.stories addObject:story];
         }
+        
+        [storyModels addObject:story];
     }];
+    
+    if (top) {
+        self.timeline.topStories = storyModels;
+    } else {
+        self.timeline.stories = storyModels;
+    }
 }
 
 @end

@@ -14,19 +14,23 @@
 
 @interface TimelineController ()
 
-@property (readwrite, strong, nonatomic) NSMutableArray<Timeline *> *timelines;
-@property (assign, nonatomic) BOOL busy;
+@property (readwrite, strong, nonatomic) NSMutableArray<Timeline *> *internalTimelines;
+@property (readwrite, assign, nonatomic) BOOL busy;
 
 @end
 
 @implementation TimelineController
 
+- (NSArray<Timeline *> *)timelines {
+    return [self.internalTimelines copy];
+}
+
 - (void)reload {
     if (self.busy)
         return;
     
-    if (!self.timelines) {
-        self.timelines = [[NSMutableArray alloc] init];
+    if (!self.internalTimelines) {
+        self.internalTimelines = [[NSMutableArray alloc] init];
     }
     
     self.busy = YES;
@@ -35,11 +39,11 @@
     TimelineParsingOperation *parsingOp = [[TimelineParsingOperation alloc] init];
     BlockOperation *notifyOp = [BlockOperation mainQueueOperationWithBlock:^{
         if (parsingOp.timeline) {
-            if (![[self.timelines firstObject].date isEqualToDate:parsingOp.timeline.date]) {
-                [self.timelines removeAllObjects];
-                [self.timelines addObject:parsingOp.timeline];
+            if (![[self.internalTimelines firstObject].date isEqualToDate:parsingOp.timeline.date]) {
+                [self.internalTimelines removeAllObjects];
+                [self.internalTimelines addObject:parsingOp.timeline];
             } else {
-                [self.timelines setObject:parsingOp.timeline atIndexedSubscript:0];
+                [self.internalTimelines setObject:parsingOp.timeline atIndexedSubscript:0];
             }
             [self.delegate timelineControllerDidFinishLoading:self];
         } else {
@@ -67,7 +71,7 @@
     TimelineParsingOperation *parsingOp = [[TimelineParsingOperation alloc] init];
     BlockOperation *notifyOp = [BlockOperation mainQueueOperationWithBlock:^{
         if (parsingOp.timeline) {
-            [self.timelines addObject:parsingOp.timeline];
+            [self.internalTimelines addObject:parsingOp.timeline];
             [self.delegate timelineControllerDidFinishLoading:self];
         } else {
             [self.delegate timelineControllerDidFailedLoading:self];

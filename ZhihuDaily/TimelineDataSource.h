@@ -12,7 +12,7 @@
 @interface TimelineDataSource : NSObject <UITableViewDataSource>
 
 @property (copy, nonatomic) NSString *cellIdentifier;
-@property (weak, nonatomic) NSArray<Timeline *> *timelines;
+@property (copy, nonatomic) NSArray<Timeline *> *timelines;
 
 - (Story *)storyAtIndexPath:(NSIndexPath *)indexPath;
 

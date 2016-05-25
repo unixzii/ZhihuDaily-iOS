@@ -10,14 +10,4 @@
 
 @implementation Timeline
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.stories = [[NSMutableArray alloc] init];
-        self.topStories = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "CacheManager.h"
 #import "StartupViewController.h"
 
 @interface AppDelegate ()
@@ -32,6 +33,10 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [self saveContext];
+}
+
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    [[CacheManager defaultManager] clearMemoryCaches];
 }
 
 #pragma mark - Core Data stack
