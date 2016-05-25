@@ -33,14 +33,14 @@
         return;
     }
     
-    NSString *imgURLString = [((NSDictionary *) obj) objectForKey:@"img"];
+    NSString *imgURLString = ((NSDictionary *) obj)[@"img"];
     NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:imgURLString]];
     
     if (imgData) {
         self.image = [UIImage imageWithData:imgData];
     }
     
-    self.text = [((NSDictionary *) obj) objectForKey:@"text"];
+    self.text = ((NSDictionary *) obj)[@"text"];
     
     [self finish];
 }

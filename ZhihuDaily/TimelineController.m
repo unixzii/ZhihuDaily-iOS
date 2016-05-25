@@ -39,7 +39,7 @@
     TimelineParsingOperation *parsingOp = [[TimelineParsingOperation alloc] init];
     BlockOperation *notifyOp = [BlockOperation mainQueueOperationWithBlock:^{
         if (parsingOp.timeline) {
-            if (![[self.internalTimelines firstObject].date isEqualToDate:parsingOp.timeline.date]) {
+            if (![(self.internalTimelines).firstObject.date isEqualToDate:parsingOp.timeline.date]) {
                 [self.internalTimelines removeAllObjects];
                 [self.internalTimelines addObject:parsingOp.timeline];
             } else {
@@ -67,7 +67,7 @@
     
     self.busy = YES;
     
-    URLDownloadingOperation *downloadOp = [URLDownloadingOperation operationWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://news-at.zhihu.com/api/4/news/before/%@", [self.timelines lastObject].dateString]]];
+    URLDownloadingOperation *downloadOp = [URLDownloadingOperation operationWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://news-at.zhihu.com/api/4/news/before/%@", (self.timelines).lastObject.dateString]]];
     TimelineParsingOperation *parsingOp = [[TimelineParsingOperation alloc] init];
     BlockOperation *notifyOp = [BlockOperation mainQueueOperationWithBlock:^{
         if (parsingOp.timeline) {

@@ -21,6 +21,8 @@
 
 @property (strong, nonatomic) TimelineTableViewController *timelineTableViewController;
 
+@property (strong, nonatomic) UIView *progressBar;
+
 @end
 
 @implementation TimelineViewController
@@ -51,9 +53,16 @@
     [self.timelineTableViewController.tableView registerNib:[UINib nibWithNibName:@"TimelineCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
     [self.timelineTableViewController.refreshControl addTarget:self.timelineController action:@selector(reload) forControlEvents:UIControlEventValueChanged];
     
+    self.progressBar = [[UIView alloc] init];
+    self.progressBar.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.frame), 5);
+    self.progressBar.backgroundColor = [UIColor colorWithRed:0 green:0.51 blue:1 alpha:1];
+    [self.view addSubview:self.progressBar];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.timelineController reload];
     });
+    
+    [self.timelineController addObserver:self forKeyPath:@"busy" options:NSKeyValueObservingOptionNew context:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateRefreshState) name:kNeedsUpdateRefreshStateNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self.timelineController selector:@selector(reserve) name:kTimelineNeedsReserveNotification object:nil];
@@ -76,6 +85,12 @@
     return UIStatusBarStyleLightContent;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
+    if ([keyPath isEqualToString:@"busy"] && object == self.timelineController) {
+        [self updateRefreshState];
+    }
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self.timelineController];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -88,14 +103,36 @@
 
 - (void)showReaderViewController:(NSNotification *)aNotification {
     ReaderViewController *readerVC = [[ReaderViewController alloc] init];
-    readerVC.story = [aNotification.userInfo objectForKey:kStoryUserInfoKey];
+    readerVC.story = (aNotification.userInfo)[kStoryUserInfoKey];
     
     [self showViewController:readerVC sender:self];
 }
 
 - (void)updateRefreshState {
-    if (!self.timelineController.busy && self.timelineTableViewController.refreshControl.refreshing) {
-        [self.timelineTableViewController.refreshControl endRefreshing];
+    if (!self.timelineController.busy) {
+        if (self.timelineTableViewController.refreshControl.refreshing) {
+            [self.timelineTableViewController.refreshControl endRefreshing];
+        }
+        
+        [UIView animateWithDuration:0.6 delay:0 usingSpringWithDamping:1.0 initialSpringVelocity:0 options:kNilOptions animations:^{
+            CGRect frame = self.progressBar.frame;
+            frame.size.width = CGRectGetWidth(self.view.frame);
+            self.progressBar.frame = frame;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.4 animations:^{
+                self.progressBar.alpha = 0;
+            }];
+        }];
+    } else {
+        __block CGRect frame = self.progressBar.frame;
+        frame.size.width = 0;
+        self.progressBar.frame = frame;
+        self.progressBar.alpha = 1;
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            frame.size.width = 30;
+            self.progressBar.frame = frame;
+        }];
     }
 }
 

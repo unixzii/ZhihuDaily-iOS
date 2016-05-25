@@ -10,6 +10,6 @@
 
 @interface NSString (MD5)
 
-- (NSString *)stringDigestedViaMD5;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSString *stringDigestedViaMD5;
 
 @end

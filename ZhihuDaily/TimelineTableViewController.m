@@ -27,7 +27,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    [self.tableView deselectRowAtIndexPath:(self.tableView).indexPathForSelectedRow animated:animated];
 }
 
 #pragma mark - Table view data source
@@ -55,7 +55,7 @@
         return 0;
     }
     
-    TimelineSectionHeaderView *headerView = [[[UINib nibWithNibName:@"TimelineSectionHeaderView" bundle:nil] instantiateWithOwner:self options:nil] firstObject];
+    TimelineSectionHeaderView *headerView = [[UINib nibWithNibName:@"TimelineSectionHeaderView" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
     headerView.textLabel.text = [self tableView:tableView titleForHeaderInSection:section];
     headerView.topLineView.hidden = section <= 1;
     

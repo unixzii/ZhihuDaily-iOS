@@ -45,7 +45,7 @@
         return 1;
     }
     
-    return [self.timelines objectAtIndex:section - 1].stories.count;
+    return (self.timelines)[section - 1].stories.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -58,8 +58,8 @@
             cell = [[TopStoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TopStoryCellIdentifier];
         }
         
-        [cell.pageController setTimeline:[self.timelines firstObject]];
-        cell.pageControl.numberOfPages = [self.timelines firstObject].topStories.count;
+        [cell.pageController setTimeline:(self.timelines).firstObject];
+        cell.pageControl.numberOfPages = (self.timelines).firstObject.topStories.count;
         cell.pageControl.currentPage = 0;
         
         return cell;
@@ -77,11 +77,11 @@
         return nil;
     }
     
-    return [self.formatter stringFromDate:[self.timelines objectAtIndex:section - 1].date];
+    return [self.formatter stringFromDate:(self.timelines)[section - 1].date];
 }
 
 - (Story *)storyAtIndexPath:(NSIndexPath *)indexPath {
-    return [[self.timelines objectAtIndex:indexPath.section - 1].stories objectAtIndex:indexPath.row];
+    return ((self.timelines)[indexPath.section - 1].stories)[indexPath.row];
 }
 
 @end

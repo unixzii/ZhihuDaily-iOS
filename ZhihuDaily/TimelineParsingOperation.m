@@ -33,15 +33,15 @@
     
     self.timeline = [[Timeline alloc] init];
     
-    NSString *dateString = [((NSDictionary *) obj) objectForKey:@"date"];
+    NSString *dateString = ((NSDictionary *) obj)[@"date"];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyyMMdd";
     
     self.timeline.dateString = dateString;
     self.timeline.date = [formatter dateFromString:dateString];
     
-    NSArray *stories = [((NSDictionary *) obj) objectForKey:@"stories"];
-    NSArray *topStories = [((NSDictionary *) obj) objectForKey:@"top_stories"];
+    NSArray *stories = ((NSDictionary *) obj)[@"stories"];
+    NSArray *topStories = ((NSDictionary *) obj)[@"top_stories"];
     
     [self inflateStories:stories forTop:NO];
     [self inflateStories:topStories forTop:YES];
@@ -54,13 +54,13 @@
     
     [stories enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         Story *story = [[Story alloc] init];
-        story.title = [obj objectForKey:@"title"];
-        story.storyId = [[obj objectForKey:@"id"] unsignedIntegerValue];
+        story.title = obj[@"title"];
+        story.storyId = [obj[@"id"] unsignedIntegerValue];
         
         if (top) {
-            story.imageURL = [NSURL URLWithString:[obj objectForKey:@"image"]];
+            story.imageURL = [NSURL URLWithString:obj[@"image"]];
         } else {
-            story.imageURL = [NSURL URLWithString:[[obj objectForKey:@"images"] firstObject]];
+            story.imageURL = [NSURL URLWithString:[obj[@"images"] firstObject]];
         }
         
         [storyModels addObject:story];

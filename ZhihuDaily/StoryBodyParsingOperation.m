@@ -27,10 +27,10 @@
     }
     
     self.story.body = [[StoryBody alloc] init];
-    self.story.body.htmlString = [((NSDictionary *) obj) objectForKey:@"body"];
-    self.story.body.cssString = [[((NSDictionary *) obj) objectForKey:@"css"] firstObject];
-    self.story.body.imageSource = [((NSDictionary *) obj) objectForKey:@"image_source"];
-    self.story.body.shareURL = [NSURL URLWithString:[((NSDictionary *) obj) objectForKey:@"share_url"]];
+    self.story.body.htmlString = ((NSDictionary *) obj)[@"body"];
+    self.story.body.cssString = [((NSDictionary *) obj)[@"css"] firstObject];
+    self.story.body.imageSource = ((NSDictionary *) obj)[@"image_source"];
+    self.story.body.shareURL = [NSURL URLWithString:((NSDictionary *) obj)[@"share_url"]];
     
     [self finish];
 }

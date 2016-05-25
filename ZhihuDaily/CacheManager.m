@@ -53,7 +53,7 @@
 
 - (void)putObject:(NSObject<NSCoding> *)object forKey:(NSString *)key toBothDiskAndMemory:(BOOL)flag {
     [self.cacheLock withCriticalZone:^id{
-        [self.memoryCache setObject:object forKey:key];
+        (self.memoryCache)[key] = object;
         return nil;
     }];
     
@@ -70,7 +70,7 @@
 
 - (id)objectForKey:(NSString *)key {
     NSObject *obj = [self.cacheLock withCriticalZone:^id{
-        return [self.memoryCache objectForKey:key];
+        return (self.memoryCache)[key];
     }];
     
     if (!obj) {

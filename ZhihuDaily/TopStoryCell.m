@@ -45,7 +45,7 @@
 }
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed {
-    self.pageControl.currentPage = ((TopStoryViewController *) [pageViewController.viewControllers firstObject]).index;
+    self.pageControl.currentPage = ((TopStoryViewController *) (pageViewController.viewControllers).firstObject).index;
 }
 
 @end

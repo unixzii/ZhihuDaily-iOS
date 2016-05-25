@@ -22,8 +22,8 @@
 + (instancetype)sharedDelegate;
 
 - (void)saveContext;
-- (NSURL *)applicationDocumentsDirectory;
-- (NSURL *)applicationCachesDirectory;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSURL *applicationDocumentsDirectory;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSURL *applicationCachesDirectory;
 
 @end
 

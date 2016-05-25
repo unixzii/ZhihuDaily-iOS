@@ -57,10 +57,10 @@ NSString * const kStartupImageCacheKey = @"com.cyandev.ZhihuDaily/startup_image"
 
 - (void)makeScrimView {
     CAGradientLayer *gradient = [CAGradientLayer layer];
-    [gradient setFrame:self.scrimView.bounds];
-    [gradient setColors:@[(id) [UIColor colorWithWhite:0 alpha:0.5].CGColor, (id) [UIColor clearColor].CGColor]];
-    [gradient setStartPoint:CGPointMake(0, 1.5)];
-    [gradient setEndPoint:CGPointMake(0, 0)];
+    gradient.frame = self.scrimView.bounds;
+    gradient.colors = @[(id) [UIColor colorWithWhite:0 alpha:0.5].CGColor, (id) [UIColor clearColor].CGColor];
+    gradient.startPoint = CGPointMake(0, 1.5);
+    gradient.endPoint = CGPointMake(0, 0);
     
     [self.scrimView.layer addSublayer:gradient];
 }

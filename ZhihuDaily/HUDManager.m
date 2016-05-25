@@ -34,8 +34,8 @@
 {
     self = [super init];
     if (self) {
-        self.centralProgressView = [[[UINib nibWithNibName:@"CentralProgressView" bundle:nil] instantiateWithOwner:self options:nil] firstObject];
-        self.bottomToastView = [[[UINib nibWithNibName:@"BottomToastView" bundle:nil] instantiateWithOwner:self options:nil] firstObject];
+        self.centralProgressView = [[UINib nibWithNibName:@"CentralProgressView" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
+        self.bottomToastView = [[UINib nibWithNibName:@"BottomToastView" bundle:nil] instantiateWithOwner:self options:nil].firstObject;
         self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(hideToast) userInfo:nil repeats:YES];
     }
     return self;

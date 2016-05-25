@@ -39,7 +39,7 @@
     TopStoryViewController *vc = [[TopStoryViewController alloc] init];
     vc.view.frame = self.view.bounds;
     vc.index = idx;
-    [vc loadWithStory:[self.timeline.topStories objectAtIndex:vc.index]];
+    [vc loadWithStory:(self.timeline.topStories)[vc.index]];
     
     return vc;
 }
